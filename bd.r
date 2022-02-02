@@ -1,0 +1,21 @@
+x<-c(0,1,2,3,4,5,6,7)
+f<-c(7,9,65,23,3,72,65,34)
+fx<-sum(f*x)
+sumf<-sum(f)
+s<-length(x)-1
+k<-fx/sumf
+p<-k/s
+pr<-dbinom(0:7,s,p)
+fe<-sumf*pr
+fe=round(fe,3)
+fee<-round(fe)
+ch.data<-table(f,fe)
+c<-chisq.test(ch.data)
+pr=round(pr,3)
+print(c)
+mydata<-data.frame(x,f,f*x,pr,fe,fee)
+sums=c(NA,sumf,fx,NA,NA,sum(fee))
+mydayta=rbind(mydata,sums)
+print(mydayta,row.names=FALSE)
+tablevalue<-qchisq(.95, df=s)
+print(tablevalue)
